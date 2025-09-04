@@ -1,0 +1,269 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+
+.body {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(26, 26, 26);
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+a:hover,
+button:hover {
+    color: orange;
+}
+
+/* Header */
+
+header {
+    background-color: black;
+    color: white;
+    background-image: url(assets/header.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px;
+    height: 30%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 2.6rem;
+}
+
+.list {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.list:hover {
+    border-bottom: 1px solid orange;
+}
+
+/* Main */
+
+.main {
+    height: 70%;
+    padding: 0 40px 40px 40px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-filled {
+    min-height: 70%;
+    height: auto;
+    justify-content: flex-start;
+}
+
+/* search container */
+
+.search-container {
+    margin-top: -20px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    position: relative;
+    width: 100%;
+}
+
+.search-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF;
+}
+
+.search-container input {
+    font-family: inherit;
+    color: #6B7280;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 10px 30px;
+    border: 1px solid #D1D5DB;
+    border-right: 1px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 100%;
+}
+
+.search-btn {
+    cursor: pointer;
+    background-color: #F9FAFB;
+    border: 1px solid #D1D5DB;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: #374151;
+    font-weight: 500;
+    padding: 10px 30px;
+}
+
+.search-btn:hover {
+    background-color: #DFDDDD;
+}
+
+/* movie list container */
+
+.movie-list-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.movie-list-filled {
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.no-movies {
+    text-align: center;
+}
+
+.movie-icon {
+    width: 70px;
+}
+
+.initial-msg {
+    color: #DFDDDD;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.error-msg {
+    color: #DFDDDD;
+    font-size: 1.125rem;
+    font-weight: 600;
+    align-self: center;
+}
+
+
+/* Movie card */
+article.movie-card {
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 20px;
+
+    display: flex;
+    gap: 20px;
+}
+
+article.movie-card:last-child {
+    border-bottom: unset;
+}
+
+.movie-img-container {
+    width: 100px;
+    border-radius: 3px;
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+.movie-img-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.movie-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.rating img {
+    margin-right: 3px;
+}
+
+.movie-description {
+    font-size: 0.75rem;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.movie-summary {
+    font-size: 0.875rem;
+    color: #6B7280;
+    line-height: 1.3;
+    /* text-wrap: balance; */
+    position: relative;
+}
+
+.plot-btn {
+    cursor: pointer;
+    background-color: transparent;
+    font-style: inherit;
+    color: black;
+    font-size: 0.75rem;
+    border: unset;
+    padding: 0;
+}
+
+.plot-btn:hover {
+    border-bottom: 1px solid orange;
+}
+
+.add-to-watchlist-btn,
+.remove-from-watchlist-btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.75rem;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-to-watchlist-btn img,
+.remove-from-watchlist-btn img {
+    width: 16px;
+}
