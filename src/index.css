@@ -14,6 +14,7 @@ html {
     height: 100vh;
     max-width: 100vw;
     background-color: rgb(26, 26, 26);
+    position: relative;
 }
 
 a {
@@ -30,7 +31,9 @@ a:hover {
 header {
     background-color: black;
     color: white;
-    background-image: url(assets/header.png);
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+        url(https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -239,7 +242,7 @@ article.movie-card:last-child {
     cursor: pointer;
     background-color: transparent;
     font-style: inherit;
-    color: black;
+    color: darkorange;
     font-size: 0.75rem;
     border: unset;
     padding: 0;
@@ -262,9 +265,4 @@ article.movie-card:last-child {
     display: flex;
     align-items: center;
     gap: 5px;
-}
-
-.add-to-watchlist-btn img,
-.remove-from-watchlist-btn img {
-    width: 16px;
 }
