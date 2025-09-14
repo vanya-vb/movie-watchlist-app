@@ -1,6 +1,14 @@
+import { useState } from "react";
 import { FaCirclePlus } from "react-icons/fa6";
 
 export default function MovieCard({ movie }) {
+    const [fullDescription, setFullDescription] = useState(false);
+
+    let description = movie.Plot;
+
+    if (!fullDescription) {
+        description = description.substring(0, 200) + '...';
+    }
 
     return (
         <article className="movie-card">
@@ -24,7 +32,14 @@ export default function MovieCard({ movie }) {
                         <FaCirclePlus /> Watchlist
                     </button>
                 </div>
-                <p className="movie-summary">{movie.Plot}</p>
+                <p className="movie-summary">{description}
+                    <button
+                        className="plot-btn"
+                        onClick={() => setFullDescription(prevState => !prevState)}
+                    >
+                        {fullDescription ? 'read less' : 'read more'}
+                    </button>
+                </p>
             </div>
         </article>
     );

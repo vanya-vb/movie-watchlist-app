@@ -243,10 +243,12 @@ article.movie-card:last-child {
     font-size: 0.75rem;
     border: unset;
     padding: 0;
+    margin-left: 5px;
 }
 
 .plot-btn:hover {
     border-bottom: 1px solid orange;
+    color: darkorange;
 }
 
 .add-to-watchlist-btn,
