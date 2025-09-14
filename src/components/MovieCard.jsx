@@ -1,3 +1,5 @@
+import { FaCirclePlus } from "react-icons/fa6";
+
 export default function MovieCard({ movie }) {
 
     return (
@@ -19,8 +21,7 @@ export default function MovieCard({ movie }) {
                     <button
                         className="add-to-watchlist-btn"
                         aria-label={`Add ${movie.Title} to watchlist`}>
-                        <img src="/src/assets/add-icon.png" alt="Plus icon" />
-                        Watchlist
+                        <FaCirclePlus /> Watchlist
                     </button>
                 </div>
                 <p className="movie-summary">{movie.Plot}</p>
