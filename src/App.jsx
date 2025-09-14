@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Header from "./components/Header"
-import MovieList from "./components/MovieList"
-import SearchInput from "./components/SearchInput"
+
+import HomePage from "./pages/HomePage";
+import { Routes, Route } from "react-router";
+import WatchlistPage from "./pages/WatchlistPage";
 
 function App() {
 	const [title, setTitle] = useState('');
 	const [movies, setMovies] = useState([]);
+	const [isHome, setIsHome] = useState(true);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -37,16 +40,20 @@ function App() {
 
 	return (
 		<div className="body">
-			<Header />
+			<Header isHome={isHome} setIsHome={setIsHome} />
 
-			<main className={`main ${movies.length > 0 && "main-filled"}`}>
-				<SearchInput
-					title={title}
-					setTitle={setTitle}
-					submitHandler={submitHandler}
-				/>
-				<MovieList movies={movies} />
-			</main>
+			<Routes>
+				<Route path="/" element={
+					<HomePage
+						movies={movies}
+						title={title}
+						setTitle={setTitle}
+						submitHandler={submitHandler}
+					/>} />
+
+				<Route path="/watchlist" element={<WatchlistPage />} />
+
+			</Routes>
 		</div>
 	)
 }
