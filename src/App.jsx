@@ -39,7 +39,7 @@ function App() {
 		<div className="body">
 			<Header />
 
-			<main className="main">
+			<main className={`main ${movies.length > 0 && "main-filled"}`}>
 				<SearchInput
 					title={title}
 					setTitle={setTitle}
