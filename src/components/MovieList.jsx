@@ -1,10 +1,17 @@
 import EmptyMovieList from "./EmptyMovieList";
 import MovieCard from "./MovieCard";
 
-export default function MovieList() {
+export default function MovieList({ movies }) {
+
     return (
-        <section className="movie-list-container">
-            <MovieCard />
+        <section className={`movie-list-container ${movies.length > 0 && "movie-list-filled"}`}>
+            {
+                movies.length === 0 ?
+                    (<EmptyMovieList />)
+                    :
+                    (movies.map(movie => <MovieCard key={movie.imdbID} movie={movie} />))
+
+            }
         </section>
     );
 }
