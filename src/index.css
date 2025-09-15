@@ -186,8 +186,8 @@ article.movie-card:last-child {
 }
 
 .movie-img-container {
-    width: 100px;
-    height: 150px;
+    width: 130px;
+    height: 190px;
     border-radius: 3px;
     overflow: hidden;
 
@@ -204,7 +204,7 @@ article.movie-card:last-child {
 .movie-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 15px;
 }
 
@@ -362,5 +362,16 @@ article.movie-card:last-child {
     .body {
         margin: 0 auto;
         width: 50vw;
+    }
+}
+
+@media(max-width: 500px) {
+    article.movie-card {
+        flex-direction: column;
+    }
+
+    .movie-img-container {
+        width: 100%;
+        height: auto;
     }
 }
