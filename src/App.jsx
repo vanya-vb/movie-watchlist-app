@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router";
+import { ToastContainer } from 'react-toastify';
 
 import Header from "./components/Header"
 import HomePage from "./pages/HomePage";
@@ -45,6 +46,15 @@ function App() {
 	return (
 		<div className="body">
 			<Header isHome={isHome} setIsHome={setIsHome} />
+
+			<ToastContainer
+				position="top-center"
+				autoClose={2000}
+				hideProgressBar={true}
+				newestOnTop={true}
+				closeOnClick
+				theme="dark"
+			/>
 
 			<Routes>
 				<Route path="/" element={

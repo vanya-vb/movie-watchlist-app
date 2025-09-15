@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleMinus } from "react-icons/fa6";
@@ -27,7 +28,8 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
             const exists = prevWatchlist.some(movie => movie.imdbID === newMovie.imdbID);
 
             if (exists) {
-                console.log(`${newMovie.Title} is already added in watchlist!`)
+                console.log(`${newMovie.Title} is already added in watchlist!`);
+                toast.error(`${newMovie.Title} is already added in watchlist!`);
                 return prevWatchlist;
             }
 
@@ -35,6 +37,7 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
             localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
 
             console.log(`${newMovie.Title} successfully added to watchlist!`);
+            toast.success(`${newMovie.Title} successfully added to watchlist!`);
 
             return updatedWatchlist;
         });
@@ -45,6 +48,7 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
 
         if (confirmDelete) {
             console.log(`${movie.Title} removed from watchlist!`);
+            toast.success(`${movie.Title} removed from watchlist!`);
             setWatchlist(watchlist.filter(movie => movie.imdbID !== id));
         }
     };
