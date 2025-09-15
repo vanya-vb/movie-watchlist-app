@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { Routes, Route } from "react-router";
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import Header from "./components/Header"
 import HomePage from "./pages/HomePage";
@@ -18,39 +18,58 @@ function App() {
 	});
 	const [isHome, setIsHome] = useState(true);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
 
 		if (title === '') {
-			throw new Error('Enter a valid movie title.')
+			setError("Enter a valid movie title.");
+
+			return;
 		}
 
 		try {
 			setLoading(true);
+			setError(null);
+			setMovies([]);
+
 			const response = await fetch(`http://www.omdbapi.com/?s=${title}&type=movie&apikey=1658edc3`);
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${Response.status}`);
+			}
+
 			const data = await response.json();
 
-			if (data.Search) {
-				const detailedMovies = await Promise.all(
-					data.Search.map(async (movie) => {
-						const detailsRes = await fetch(`https://www.omdbapi.com/?apikey=1658edc3&i=${movie.imdbID}&plot=full`);
-
-						return detailsRes.json();
-					})
-				);
-
-				setMovies(detailedMovies);
+			if (data.Response === 'False') {
+				throw new Error(data.Error || 'No movies found');
 			}
+
+			const detailedMovies = await Promise.all(
+				data.Search.map(async (movie) => {
+					const detailsRes = await fetch(`https://www.omdbapi.com/?apikey=1658edc3&i=${movie.imdbID}&plot=full`);
+
+					if (!detailsRes.ok) {
+						throw new Error(`Failed to fetch details for ${movie.Title}`);
+					}
+
+					return detailsRes.json();
+				})
+			);
+
+			setMovies(detailedMovies);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
+			setError(err.message || 'Something went wrong. Please try again.');
 		} finally {
 			setLoading(false);
 		}
-	}
+	};
 
 	return (
-		<Context.Provider value={{ title, setTitle, movies, setMovies, submitHandler, watchlist, setWatchlist, isHome, setIsHome, loading, setLoading }}>
+		<Context.Provider value={{ title, setTitle, movies, setMovies, submitHandler, watchlist, setWatchlist, isHome, setIsHome, loading, setLoading, error }}>
+
 			<div className="body">
 				<Header />
 
@@ -69,6 +88,7 @@ function App() {
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</div>
+			
 		</Context.Provider>
 	)
 }
