@@ -1,6 +1,9 @@
 import { FaSearch } from 'react-icons/fa';
+import { useContext } from 'react';
+import { Context } from '../App';
 
-export default function SearchInput({ title, setTitle, submitHandler }) {
+export default function SearchInput() {
+    const { title, setTitle, submitHandler } = useContext(Context);
 
     return (
         <form onSubmit={submitHandler} className="search-container">

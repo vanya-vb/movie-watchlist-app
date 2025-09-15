@@ -1,11 +1,16 @@
-import EmptyMovieList from "./EmptyMovieList";
-import MovieCard from "./MovieCard";
+import { useContext } from "react";
+import { Context } from "../App";
 import { ClipLoader } from "react-spinners";
 
-export default function MovieList({ movies, watchlist, setWatchlist, isHome = true, loading }) {
+import EmptyMovieList from "./EmptyMovieList";
+import MovieCard from "./MovieCard";
+
+export default function MovieList({ movies }) {
+    const { loading } = useContext(Context);
+
     const override = {
         margin: '120px auto'
-    }
+    };
 
     return (
         <section className={`movie-list-container ${movies.length > 0 && "movie-list-filled"}`}>
@@ -21,13 +26,7 @@ export default function MovieList({ movies, watchlist, setWatchlist, isHome = tr
                     <EmptyMovieList />
                 ) : (
                     movies.map((movie) => (
-                        <MovieCard
-                            key={movie.imdbID}
-                            movie={movie}
-                            watchlist={watchlist}
-                            setWatchlist={setWatchlist}
-                            isHome={isHome}
-                        />
+                        <MovieCard key={movie.imdbID} movie={movie} />
                     ))
                 )
             }

@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from 'react-toastify';
+import { Context } from "../App";
 
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleMinus } from "react-icons/fa6";
 
-export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
+export default function MovieCard({ movie }) {
     const [fullDescription, setFullDescription] = useState(false);
+
+    const { watchlist, setWatchlist, isHome } = useContext(Context);
 
     let description = movie.Plot;
 
@@ -71,7 +74,6 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
                         className="add-to-watchlist-btn"
                         aria-label={`Add ${movie.Title} to watchlist`}>
                         {
-                            // fix here
                             isHome ? <FaCirclePlus /> : < FaCircleMinus />
                         }
                         {

@@ -16,11 +16,10 @@ export default function WatchlistPage() {
             <section className="watchlist-container">
                 {
                     watchlist.length > 0 ?
-                        (<MovieList movies={watchlist} watchlist={watchlist} setWatchlist={setWatchlist} isHome={false} />)
+                        (<MovieList movies={watchlist} isHome={false} />)
                         :
                         (<EmptyWatchlist />)
                 }
-
             </section>
         </main>
     );

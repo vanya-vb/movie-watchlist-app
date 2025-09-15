@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Header from "./components/Header"
 import HomePage from "./pages/HomePage";
 import WatchlistPage from "./pages/WatchlistPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const Context = createContext();
 
@@ -64,9 +65,8 @@ function App() {
 
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/watchlist" element={
-						<WatchlistPage />}
-					/>
+					<Route path="/watchlist" element={<WatchlistPage />} />
+					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</div>
 		</Context.Provider>

@@ -308,6 +308,56 @@ article.movie-card:last-child {
     gap: 5px;
 }
 
+/* Not Found Page */
+
+.notfound {
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.notfound .notfound-404 {
+    line-height: 153px;
+}
+
+.notfound .notfound-404 h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #222;
+    font-size: 9rem;
+    letter-spacing: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #c9c9c9;
+}
+
+.notfound .notfound-404 h1>span {
+    text-shadow: 2px 2px 0px #ffab00, -2px -2px 0px #ffab00, 0px 0px 8px #ff8700;
+}
+
+.notfound p {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #363636;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.notfound a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #363636;
+    border: 2px solid #c9c9c9;
+    display: inline-block;
+    padding: 10px 25px;
+    font-weight: 700;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.notfound a:hover {
+    color: darkorange;
+    border-color: #ffab00;
+}
+
 @media(min-width: 1000px) {
     .body {
         margin: 0 auto;
