@@ -28,7 +28,6 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
             const exists = prevWatchlist.some(movie => movie.imdbID === newMovie.imdbID);
 
             if (exists) {
-                console.log(`${newMovie.Title} is already added in watchlist!`);
                 toast.error(`${newMovie.Title} is already added in watchlist!`);
                 return prevWatchlist;
             }
@@ -36,7 +35,6 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
             const updatedWatchlist = [...prevWatchlist, newMovie];
             localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
 
-            console.log(`${newMovie.Title} successfully added to watchlist!`);
             toast.success(`${newMovie.Title} successfully added to watchlist!`);
 
             return updatedWatchlist;
@@ -47,7 +45,6 @@ export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
         const confirmDelete = window.confirm(`Are you sure you want to remove ${movie.Title} from watchlist?`);
 
         if (confirmDelete) {
-            console.log(`${movie.Title} removed from watchlist!`);
             toast.success(`${movie.Title} removed from watchlist!`);
             setWatchlist(watchlist.filter(movie => movie.imdbID !== id));
         }

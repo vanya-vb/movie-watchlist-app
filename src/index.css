@@ -25,6 +25,7 @@ a {
 
 a:hover {
     color: orange;
+    transition: color 0.3s;
 }
 
 /* Header */
@@ -251,7 +252,7 @@ article.movie-card:last-child {
 }
 
 .plot-btn:hover {
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid darkorange;
     color: darkorange;
 }
 
@@ -266,6 +267,11 @@ article.movie-card:last-child {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.add-to-watchlist-btn:hover,
+.remove-from-watchlist-btn:hover {
+    color: darkorange;
 }
 
 /* Watchlist */

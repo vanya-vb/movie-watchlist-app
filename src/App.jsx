@@ -14,6 +14,7 @@ function App() {
 		return watchlist || [];
 	});
 	const [isHome, setIsHome] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -23,6 +24,7 @@ function App() {
 		}
 
 		try {
+			setLoading(true);
 			const response = await fetch(`http://www.omdbapi.com/?s=${title}&type=movie&apikey=1658edc3`);
 			const data = await response.json();
 
@@ -33,13 +35,14 @@ function App() {
 
 						return detailsRes.json();
 					})
-				)
+				);
 
 				setMovies(detailedMovies);
 			}
-
 		} catch (err) {
 			console.log(err);
+		} finally {
+			setLoading(false);
 		}
 	}
 
@@ -65,6 +68,7 @@ function App() {
 						submitHandler={submitHandler}
 						watchlist={watchlist}
 						setWatchlist={setWatchlist}
+						loading={loading}
 					/>}
 				/>
 
