@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { Context } from "../App";
 
 import EmptyWatchlist from "../components/EmptyWatchlist";
 import MovieList from "../components/MovieList";
 
-export default function WatchlistPage({ watchlist, setWatchlist }) {
+export default function WatchlistPage() {
+    const { watchlist, setWatchlist } = useContext(Context);
 
     useEffect(() => {
         localStorage.setItem('watchlist', JSON.stringify(watchlist));

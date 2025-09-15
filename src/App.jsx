@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { Routes, Route } from "react-router";
 import { ToastContainer } from 'react-toastify';
 
 import Header from "./components/Header"
 import HomePage from "./pages/HomePage";
 import WatchlistPage from "./pages/WatchlistPage";
+
+const Context = createContext();
 
 function App() {
 	const [title, setTitle] = useState('');
@@ -47,41 +49,29 @@ function App() {
 	}
 
 	return (
-		<div className="body">
-			<Header isHome={isHome} setIsHome={setIsHome} />
+		<Context.Provider value={{ title, setTitle, movies, setMovies, submitHandler, watchlist, setWatchlist, isHome, setIsHome, loading, setLoading }}>
+			<div className="body">
+				<Header />
 
-			<ToastContainer
-				position="top-center"
-				autoClose={2000}
-				hideProgressBar={true}
-				newestOnTop={true}
-				closeOnClick
-				theme="dark"
-			/>
-
-			<Routes>
-				<Route path="/" element={
-					<HomePage
-						movies={movies}
-						title={title}
-						setTitle={setTitle}
-						submitHandler={submitHandler}
-						watchlist={watchlist}
-						setWatchlist={setWatchlist}
-						loading={loading}
-					/>}
+				<ToastContainer
+					position="top-center"
+					autoClose={2000}
+					hideProgressBar={true}
+					newestOnTop={true}
+					closeOnClick
+					theme="dark"
 				/>
 
-				<Route path="/watchlist" element={
-					<WatchlistPage
-						watchlist={watchlist}
-						setWatchlist={setWatchlist}
-					/>}
-				/>
-
-			</Routes>
-		</div>
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/watchlist" element={
+						<WatchlistPage />}
+					/>
+				</Routes>
+			</div>
+		</Context.Provider>
 	)
 }
 
 export default App
+export { Context }
