@@ -43,6 +43,7 @@ header {
     height: 30%;
 
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -366,6 +367,10 @@ article.movie-card:last-child {
 }
 
 @media(max-width: 500px) {
+    .title {
+        font-size: 2.1rem;
+    }
+
     article.movie-card {
         flex-direction: column;
     }
@@ -373,5 +378,24 @@ article.movie-card:last-child {
     .movie-img-container {
         width: 100%;
         height: auto;
+    }
+
+    .initial-msg {
+        text-align: center;
+    }
+}
+
+@media(max-width: 330px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .notfound .notfound-404 h1 {
+        font-size: 7rem;
     }
 }
