@@ -1,13 +1,17 @@
 import { useState } from "react";
-import Header from "./components/Header"
-
-import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router";
+
+import Header from "./components/Header"
+import HomePage from "./pages/HomePage";
 import WatchlistPage from "./pages/WatchlistPage";
 
 function App() {
 	const [title, setTitle] = useState('');
 	const [movies, setMovies] = useState([]);
+	const [watchlist, setWatchlist] = useState(() => {
+		const watchlist = JSON.parse(localStorage.getItem('watchlist'));
+		return watchlist || [];
+	});
 	const [isHome, setIsHome] = useState(true);
 
 	const submitHandler = async (e) => {
@@ -49,9 +53,17 @@ function App() {
 						title={title}
 						setTitle={setTitle}
 						submitHandler={submitHandler}
-					/>} />
+						watchlist={watchlist}
+						setWatchlist={setWatchlist}
+					/>}
+				/>
 
-				<Route path="/watchlist" element={<WatchlistPage />} />
+				<Route path="/watchlist" element={
+					<WatchlistPage
+						watchlist={watchlist}
+						setWatchlist={setWatchlist}
+					/>}
+				/>
 
 			</Routes>
 		</div>

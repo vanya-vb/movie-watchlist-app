@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { FaCirclePlus } from "react-icons/fa6";
 
-export default function MovieCard({ movie }) {
+import { FaCirclePlus } from "react-icons/fa6";
+import { FaCircleMinus } from "react-icons/fa6";
+
+export default function MovieCard({ movie, watchlist, setWatchlist, isHome }) {
     const [fullDescription, setFullDescription] = useState(false);
 
     let description = movie.Plot;
@@ -9,6 +11,43 @@ export default function MovieCard({ movie }) {
     if (!fullDescription) {
         description = description.substring(0, 200) + '...';
     }
+
+    const addToWatchlist = (id) => {
+        const newMovie = {
+            imdbID: id,
+            Title: movie.Title,
+            Poster: movie.Poster,
+            Genre: movie.Genre,
+            imdbRating: movie.imdbRating,
+            Runtime: movie.Runtime,
+            Plot: movie.Plot,
+        };
+
+        setWatchlist(prevWatchlist => {
+            const exists = prevWatchlist.some(movie => movie.imdbID === newMovie.imdbID);
+
+            if (exists) {
+                console.log(`${newMovie.Title} is already added in watchlist!`)
+                return prevWatchlist;
+            }
+
+            const updatedWatchlist = [...prevWatchlist, newMovie];
+            localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
+
+            console.log(`${newMovie.Title} successfully added to watchlist!`);
+
+            return updatedWatchlist;
+        });
+    };
+
+    const removeMovie = (id) => {
+        const confirmDelete = window.confirm(`Are you sure you want to remove ${movie.Title} from watchlist?`);
+
+        if (confirmDelete) {
+            console.log(`${movie.Title} removed from watchlist!`);
+            setWatchlist(watchlist.filter(movie => movie.imdbID !== id));
+        }
+    };
 
     return (
         <article className="movie-card">
@@ -27,9 +66,16 @@ export default function MovieCard({ movie }) {
                     <span className="movie-duration">{movie.Runtime}</span>
                     <span className="movie-genre">{movie.Genre}</span>
                     <button
+                        onClick={isHome ? () => addToWatchlist(movie.imdbID) : () => removeMovie(movie.imdbID)}
                         className="add-to-watchlist-btn"
                         aria-label={`Add ${movie.Title} to watchlist`}>
-                        <FaCirclePlus /> Watchlist
+                        {
+                            // fix here
+                            isHome ? <FaCirclePlus /> : < FaCircleMinus />
+                        }
+                        {
+                            isHome ? 'Watchlist' : 'Remove'
+                        }
                     </button>
                 </div>
                 <p className="movie-summary">{description}

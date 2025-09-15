@@ -1,7 +1,7 @@
 import MovieList from "../components/MovieList"
 import SearchInput from "../components/SearchInput"
 
-export default function HomePage({ movies, title, setTitle, submitHandler }) {
+export default function HomePage({ movies, title, setTitle, submitHandler, watchlist, setWatchlist }) {
     return (
         <main className={`main ${movies.length > 0 && "main-filled"}`}>
             <SearchInput
@@ -9,7 +9,7 @@ export default function HomePage({ movies, title, setTitle, submitHandler }) {
                 setTitle={setTitle}
                 submitHandler={submitHandler}
             />
-            <MovieList movies={movies} />
+            <MovieList movies={movies} watchlist={watchlist} setWatchlist={setWatchlist} />
         </main>
     );
 };
