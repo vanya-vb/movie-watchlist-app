@@ -34,10 +34,10 @@ function App() {
 			setError(null);
 			setMovies([]);
 
-			const response = await fetch(`http://www.omdbapi.com/?s=${title}&type=movie&apikey=1658edc3`);
+			const response = await fetch(`/api/fetchMovies?q=${encodeURIComponent(title)}`);
 
 			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${Response.status}`);
+				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 
 			const data = await response.json();
@@ -48,7 +48,7 @@ function App() {
 
 			const detailedMovies = await Promise.all(
 				data.Search.map(async (movie) => {
-					const detailsRes = await fetch(`https://www.omdbapi.com/?apikey=1658edc3&i=${movie.imdbID}&plot=full`);
+					const detailsRes = await fetch(`/api/fetchMovies?q=${movie.imdbID}&type=detail`);
 
 					if (!detailsRes.ok) {
 						throw new Error(`Failed to fetch details for ${movie.Title}`);
