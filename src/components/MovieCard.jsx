@@ -5,6 +5,8 @@ import { Context } from "../App";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleMinus } from "react-icons/fa6";
 
+import starIcon from "../assets/star-icon.png";
+
 export default function MovieCard({ movie }) {
     const [fullDescription, setFullDescription] = useState(false);
 
@@ -63,7 +65,7 @@ export default function MovieCard({ movie }) {
                 <h2 className="movie-title">
                     {movie.Title}
                     <span className="rating" aria-label={`Rating: ${movie.imdbRating}`}>
-                        <img src="/src/assets/star-icon.png" alt="Star icon" />{movie.imdbRating}</span>
+                        <img src={starIcon} alt="Star icon" />{movie.imdbRating}</span>
                 </h2>
 
                 <div className="movie-description">
